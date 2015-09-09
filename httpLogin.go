@@ -13,11 +13,13 @@ func Login(url, username, password string) bool {
 	//tr := &http.Transport{
 	//	Proxy: nil,
 	//}
+	//client := &http.Client{Transport: tr}
+	client := &http.Client{}
+
 	var jsonStr = []byte(`{"username":"` + username + `", "password":"` + password + `"}`)
 	req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonStr))
 	req.Header.Set("Content-Type", "application/json")
 
-	client := &http.Client{Transport: tr}
 	res, err := client.Do(req)
 	if err != nil {
 		panic(err)
