@@ -9,9 +9,10 @@ import (
 
 func Login(url, username, password string) bool {
 	fmt.Println("accessing: ", url)
-	tr := &http.Transport{
-		Proxy: nil,
-	}
+	//If you need proxy uncomment the following
+	//tr := &http.Transport{
+	//	Proxy: nil,
+	//}
 	var jsonStr = []byte(`{"username":"` + username + `", "password":"` + password + `"}`)
 	req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonStr))
 	req.Header.Set("Content-Type", "application/json")
